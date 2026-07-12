@@ -16,7 +16,7 @@ const roles = [
     title: 'CTO & Full-Stack Developer',
     company: 'Bogzin',
     story: 'Leading a 10+ person cross-functional team while staying close to the code. I turn product questions into architecture, releases, and systems that hold up in production.',
-    tags: ['Kotlin', 'Next.js', 'PostgreSQL', 'Docker Swarm'],
+    tags: ['Kotlin', 'Spring Boot', 'Angular', 'Next.js', 'PostgreSQL', 'Redis', 'Docker Swarm', 'Nginx', 'GitLab CI/CD'],
   },
   {
     years: '2025 — 2026',
@@ -24,7 +24,7 @@ const roles = [
     title: 'AI Backend Developer & PM',
     company: '3D Continuum · Custom RAG',
     story: 'Built retrieval systems from ingestion to answer: document parsing, chunking, embeddings, vector search, and the services around them.',
-    tags: ['FastAPI', 'Neo4j', 'AWS Bedrock', 'Redis'],
+    tags: ['Python', 'FastAPI', 'Spring Boot', 'Neo4j', 'PostgreSQL', 'Redis', 'AWS Bedrock', 'SageMaker', 'AWS Glue'],
   },
   {
     years: '2020 — 2023',
@@ -32,7 +32,7 @@ const roles = [
     title: 'Frontend Lead → Project Manager',
     company: 'Nilasoft',
     story: 'Grew from shipping interfaces to guiding delivery. Led frontend work, contributed to Spring services, ran sprints, and learned how teams make good software together.',
-    tags: ['Angular', 'React', 'Spring Boot', 'Leadership'],
+    tags: ['Angular', 'React', 'TypeScript', 'Spring Boot', 'PostgreSQL', 'REST APIs', 'Scrum', 'Leadership'],
   },
   {
     years: '2018 — 2020',
@@ -46,22 +46,32 @@ const roles = [
 
 const projects = [
   {
-    index: '01', title: 'Bogzin Platform', type: 'Commerce infrastructure',
+    index: '01', title: 'Nobat Link', type: 'Live SaaS product', symbol: 'calendar',
+    summary: 'A solo, AI-assisted full-stack product for small service businesses to manage customers, availability, payments, reservations, and reminders from one place.',
+    details: ['Designed & built end-to-end', 'Currently in user testing', 'Booking, payment & reminder flows'],
+    tags: ['Next.js', 'FastAPI', 'PostgreSQL', 'Docker'],
+    color: 'amber', link: 'https://nobatlink.shop', status: 'User testing',
+  },
+  {
+    index: '02', title: 'Bogzin Platform', type: 'Commerce infrastructure', symbol: 'commerce',
     summary: 'The operating system behind a B2B/B2C marketplace — from trust and verification to the final movement of inventory and money.',
     details: ['Order & payment lifecycles', 'Wallets, refunds & reservations', 'Admin and operational tooling'],
-    color: 'clay',
+    tags: ['Kotlin', 'Angular', 'Next.js', 'PostgreSQL', 'Redis'],
+    color: 'clay', status: 'Production',
   },
   {
-    index: '02', title: 'Custom RAG', type: 'Applied AI',
+    index: '03', title: 'Custom RAG', type: 'Applied AI', symbol: 'nodes',
     summary: 'A retrieval backend that makes large document collections useful, searchable, and grounded for domain-specific conversations.',
     details: ['Ingestion & chunking pipelines', 'Embeddings & vector retrieval', 'Bedrock-powered answer flows'],
-    color: 'moss',
+    tags: ['FastAPI', 'Neo4j', 'Redis', 'AWS Bedrock'],
+    color: 'moss', status: 'Client work',
   },
   {
-    index: '03', title: 'DecentraBNB', type: 'Blockchain product',
+    index: '04', title: 'DecentraBNB', type: 'Blockchain product', symbol: 'chain',
     summary: 'A product experience for a decentralized hospitality concept, balancing unfamiliar technology with familiar, usable journeys.',
     details: ['Frontend team leadership', 'Angular & React interfaces', 'Java backend contribution'],
-    color: 'ink',
+    tags: ['Angular', 'React', 'Spring Boot', 'PostgreSQL'],
+    color: 'ink', status: 'Selected work',
   },
 ]
 
@@ -155,10 +165,12 @@ function App() {
           <div className="project-grid">
             {projects.map(project => (
               <article className={`project ${project.color}`} key={project.index}>
-                <div className="project-top"><span>{project.index}</span><span>{project.type}</span></div>
-                <div className="project-symbol" aria-hidden="true"><span /><span /><span /></div>
+                <div className="project-top"><span>{project.index}</span><span>{project.type}</span><span className="project-status">{project.status}</span></div>
+                <div className={`project-symbol ${project.symbol}`} aria-hidden="true"><span /><span /><span /></div>
                 <h3>{project.title}</h3><p>{project.summary}</p>
+                <div className="project-tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div>
                 <ul>{project.details.map(item => <li key={item}>{item}</li>)}</ul>
+                {'link' in project && project.link && <a className="project-link" href={project.link} target="_blank" rel="noreferrer">View live product <ArrowUpRight size={16} /></a>}
               </article>
             ))}
           </div>
