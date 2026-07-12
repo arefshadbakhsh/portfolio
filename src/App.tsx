@@ -73,7 +73,7 @@ const projects = [
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [active, setActive] = useState('prologue')
-  const [lang, setLang] = useState<Language>('en')
+  const [lang, setLang] = useState<Language>(() => (localStorage.getItem('portfolio-language') as Language) || 'en')
   const t = copy[lang]
   const chapters = chapterIds.map((id, index) => ({ id, label: t.nav[index] }))
   const localizedProjects = projects.slice(1).map(project => {
@@ -95,6 +95,7 @@ function App() {
   useEffect(() => {
     document.documentElement.lang = lang
     document.documentElement.dir = lang === 'fa' ? 'rtl' : 'ltr'
+    localStorage.setItem('portfolio-language', lang)
   }, [lang])
 
   const go = (id: string) => {
@@ -106,7 +107,7 @@ function App() {
     <div className="site-shell">
       <header className="topbar">
         <button className="wordmark" onClick={() => go('prologue')} aria-label="Back to top">
-          <span>AS</span><span className="wordmark-text"><strong>Aref Shadbakhsh</strong><br />Full-stack · Technical lead</span>
+          <img src="/aref-shadbakhsh.jpg" alt="" /><span className="wordmark-text"><strong>Aref Shadbakhsh</strong><small>Full-stack · Technical lead</small></span>
         </button>
         <nav className="desktop-nav" aria-label="Primary navigation">
           {chapters.map((item, i) => (
@@ -172,7 +173,7 @@ function App() {
           <div className="case-list">
             {localizedProjects.map(project => (
               <article className="case-row" key={project.index}>
-                <div className={`case-visual ${project.symbol}`} aria-hidden="true"><span /><span /><span /><small>{project.index}</small>{project.title === 'Drage Analytics' && <b>DRAGE<br />ANALYTICS</b>}</div>
+                <div className={`case-visual ${project.symbol}`} aria-hidden="true"><span /><span /><span />{project.title === 'Drage Analytics' && <b>DRAGE<br />ANALYTICS</b>}</div>
                 <div className="case-row-copy">
                   <div className="project-top"><span>{project.type}</span><span className="project-status">{project.status}</span></div>
                   <h3>{project.title}</h3><p>{project.summary}</p>
@@ -219,13 +220,13 @@ function App() {
           <span className="kicker">{t.epilogue}</span>
           <div className="contact-grid">
             <div><h2>{t.next}</h2><p>{t.interest}</p></div>
-            <div className="contact-card">
+            <div className="contact-profile"><img src="/aref-shadbakhsh.jpg" alt="Aref Shadbakhsh" /><div className="contact-card">
               <span>{t.projectMind}</span>
               <h3>{t.tell}</h3>
               <a className="primary-action" href="mailto:aref.shadbakhsh@gmail.com?subject=Project%20conversation%20with%20Aref"><Mail size={20} /> {t.email} <ArrowUpRight size={20} /></a>
               <a className="email-address" href="mailto:aref.shadbakhsh@gmail.com">aref.shadbakhsh@gmail.com</a>
               <div className="contact-links"><a href="https://github.com/arefshadbakhsh" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={14} /></a><a href="/Aref_Shadbakhsh_Resume.pdf" download><Download size={14} /> {t.resume}</a></div>
-            </div>
+            </div></div>
           </div>
           <footer><span>© {new Date().getFullYear()} Aref Shadbakhsh</span><span>{t.builtIn}</span><a href="mailto:aref.shadbakhsh@gmail.com">aref.shadbakhsh@gmail.com</a></footer>
         </section>
