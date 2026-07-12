@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react'
 import { ArrowDown, ArrowUpRight, Download, Mail, Menu, X } from 'lucide-react'
 
 const chapters = [
-  { id: 'prologue', label: 'Prologue' },
-  { id: 'journey', label: 'The journey' },
-  { id: 'work', label: 'Selected work' },
-  { id: 'systems', label: 'How I build' },
+  { id: 'prologue', label: 'About' },
+  { id: 'work', label: 'Work' },
+  { id: 'systems', label: 'Approach' },
+  { id: 'journey', label: 'Experience' },
   { id: 'contact', label: 'Let’s talk' },
 ]
 
@@ -141,36 +141,44 @@ function App() {
           </div>
         </section>
 
-        <section className="journey section" id="journey">
-          <div className="section-heading">
-            <span className="kicker">Chapter one · The journey</span>
-            <h2>From the interface<br />to the <em>whole system.</em></h2>
-            <p>Each role widened the frame — from a single component, to a product, to the team and infrastructure behind it.</p>
-          </div>
-          <div className="timeline">
-            {roles.map(role => (
-              <article className="role" key={role.number}>
-                <div className="role-meta"><span>{role.number}</span><time>{role.years}</time></div>
-                <div className="role-body"><p className="company">{role.company}</p><h3>{role.title}</h3><p>{role.story}</p><div className="tags">{role.tags.map(tag => <span key={tag}>{tag}</span>)}</div></div>
-              </article>
-            ))}
-          </div>
-        </section>
-
         <section className="work section" id="work">
           <div className="section-heading light">
-            <span className="kicker">Chapter two · Selected work</span>
-            <h2>Systems with<br /><em>something at stake.</em></h2>
+            <span className="kicker">01 · Selected work</span>
+            <h2>Products, not<br /><em>just projects.</em></h2>
           </div>
-          <div className="project-grid">
-            {projects.map(project => (
-              <article className={`project ${project.color}`} key={project.index}>
-                <div className="project-top"><span>{project.index}</span><span>{project.type}</span><span className="project-status">{project.status}</span></div>
-                <div className={`project-symbol ${project.symbol}`} aria-hidden="true"><span /><span /><span /></div>
-                <h3>{project.title}</h3><p>{project.summary}</p>
-                <div className="project-tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div>
-                <ul>{project.details.map(item => <li key={item}>{item}</li>)}</ul>
-                {'link' in project && project.link && <a className="project-link" href={project.link} target="_blank" rel="noreferrer">View live product <ArrowUpRight size={16} /></a>}
+          <article className="featured-case">
+            <div className="case-copy">
+              <div className="case-label"><span>Featured build · 2026</span><span className="case-status"><i /> In user testing</span></div>
+              <p className="case-name">Nobat Link</p>
+              <h3>Scheduling shouldn’t live in scattered messages.</h3>
+              <p className="case-intro">I designed and built a Persian booking platform for small service businesses—turning appointments, availability, customers, payments, and reminders into one clear operating flow.</p>
+              <dl className="case-facts">
+                <div><dt>Role</dt><dd>Solo full-stack developer</dd></div>
+                <div><dt>Built with</dt><dd>Next.js · FastAPI · PostgreSQL · Docker</dd></div>
+                <div><dt>Method</dt><dd>AI-assisted implementation, product decisions by me</dd></div>
+              </dl>
+              <a className="case-link" href="https://nobatlink.shop" target="_blank" rel="noreferrer">Explore the live product <ArrowUpRight size={18} /></a>
+            </div>
+            <div className="booking-map" aria-label="Nobat Link product flow">
+              <div className="map-head"><span>Product flow</span><span>nobatlink.shop</span></div>
+              <div className="map-customer"><small>01 · Customer</small><strong>Choose a service</strong><span>Find a time that works</span></div>
+              <div className="map-line"><i /><i /><i /></div>
+              <div className="map-engine"><small>02 · Booking engine</small><div><span>Availability</span><span>Reservation</span><span>Payment</span><span>Reminder</span></div></div>
+              <div className="map-line"><i /><i /><i /></div>
+              <div className="map-owner"><small>03 · Business</small><strong>One operational view</strong><span>Customers · schedule · money</span></div>
+            </div>
+          </article>
+          <div className="supporting-heading"><span>More systems I’ve helped shape</span><p>Commercial platforms, AI infrastructure, and products where reliability matters.</p></div>
+          <div className="case-list">
+            {projects.slice(1).map(project => (
+              <article className="case-row" key={project.index}>
+                <div className={`case-visual ${project.symbol}`} aria-hidden="true"><span /><span /><span /><small>{project.index}</small></div>
+                <div className="case-row-copy">
+                  <div className="project-top"><span>{project.type}</span><span className="project-status">{project.status}</span></div>
+                  <h3>{project.title}</h3><p>{project.summary}</p>
+                  <div className="project-tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div>
+                  <ul>{project.details.map(item => <li key={item}>{item}</li>)}</ul>
+                </div>
               </article>
             ))}
           </div>
@@ -179,7 +187,7 @@ function App() {
 
         <section className="systems section" id="systems">
           <div className="systems-intro">
-            <span className="kicker">Chapter three · How I build</span>
+            <span className="kicker">02 · How I build</span>
             <blockquote>“Technology matters.<br />The <em>way we reason</em><br />about it matters more.”</blockquote>
           </div>
           <div className="principles">
@@ -188,6 +196,22 @@ function App() {
           <div className="toolbox">
             <span>Working vocabulary</span>
             <p>Kotlin · Java · Spring Boot · Angular · React · Next.js · TypeScript · PostgreSQL · Redis · Neo4j · FastAPI · Docker · Nginx · GitLab CI/CD · AWS</p>
+          </div>
+        </section>
+
+        <section className="journey section" id="journey">
+          <div className="experience-heading">
+            <span className="kicker">03 · Experience</span>
+            <h2>Eight years,<br /><em>one widening frame.</em></h2>
+            <p>Frontend craft became product ownership, architecture, production operations, and technical leadership.</p>
+          </div>
+          <div className="timeline compact">
+            {roles.map(role => (
+              <article className="role" key={role.number}>
+                <div className="role-meta"><time>{role.years}</time></div>
+                <div className="role-body"><p className="company">{role.company}</p><h3>{role.title}</h3><p>{role.story}</p><div className="tags">{role.tags.map(tag => <span key={tag}>{tag}</span>)}</div></div>
+              </article>
+            ))}
           </div>
         </section>
 
@@ -203,7 +227,7 @@ function App() {
               <div className="contact-links"><a href="https://github.com/arefshadbakhsh" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={14} /></a><a href="/Aref_Shadbakhsh_Resume.pdf" download><Download size={14} /> Résumé</a></div>
             </div>
           </div>
-          <footer><span>© {new Date().getFullYear()} Aref Shadbakhsh</span><span>Built with care in Tehran</span><a href="mailto:aref.shadbakhsh@gmail.com">aref.shadbakhsh@gmail.com</a></footer>
+          <footer><span>© {new Date().getFullYear()} Aref Shadbakhsh</span><span>Built with care in Rasht</span><a href="mailto:aref.shadbakhsh@gmail.com">aref.shadbakhsh@gmail.com</a></footer>
         </section>
       </main>
     </div>
