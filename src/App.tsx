@@ -93,7 +93,7 @@ function App() {
     <div className="site-shell">
       <header className="topbar">
         <button className="wordmark" onClick={() => go('prologue')} aria-label="Back to top">
-          <span>AS</span><span className="wordmark-text">FIELD NOTES<br />VOL. 08</span>
+          <span>AS</span><span className="wordmark-text"><strong>Aref Shadbakhsh</strong><br />Full-stack · Technical lead</span>
         </button>
         <nav className="desktop-nav" aria-label="Primary navigation">
           {chapters.map((item, i) => (
@@ -112,22 +112,23 @@ function App() {
 
       <main>
         <section className="hero" id="prologue">
-          <div className="eyebrow"><span>Tehran · Remote</span><span>Est. 2018</span></div>
-          <div className="hero-title-wrap">
-            <p className="issue-label">A working journal of<br />products, systems & teams</p>
-            <h1>Aref<br /><em>Shadbakhsh.</em></h1>
-          </div>
-          <div className="hero-bottom">
-            <div className="intro-copy">
-              <p>I’m a full-stack developer and technical leader who moves between <strong>code, architecture, and people</strong> to turn complicated product ideas into dependable systems.</p>
-              <button onClick={() => go('journey')}>Begin the story <ArrowDown size={18} /></button>
+          <div className="eyebrow"><span>Rasht, Iran · Working remotely</span><span>Building since 2018</span></div>
+          <div className="hero-grid">
+            <div className="hero-copy">
+              <p className="issue-label">Full-stack developer · Technical leader · CTO</p>
+              <h1>Aref<br /><em>Shadbakhsh.</em></h1>
+              <p className="hero-lede">I work across <strong>code, architecture, and people</strong> to turn complicated product ideas into dependable systems.</p>
+              <div className="hero-actions">
+                <button onClick={() => go('work')}>Explore my work <ArrowDown size={17} /></button>
+                <a href="mailto:aref.shadbakhsh@gmail.com?subject=Let%27s%20work%20together">Let’s work together <ArrowUpRight size={17} /></a>
+              </div>
             </div>
-            <div className="hero-note">
-              <span>Currently</span>
-              <p>CTO at Bogzin, building commerce infrastructure and exploring grounded AI systems.</p>
-            </div>
+            <figure className="portrait-wrap">
+              <img src="/aref-shadbakhsh.jpg" alt="Aref Shadbakhsh" />
+              <figcaption><span>Currently</span> CTO at Bogzin, building commerce infrastructure and grounded AI systems.</figcaption>
+              <div className="experience-stamp"><strong>8+</strong><small>YEARS OF<br />EXPERIENCE</small></div>
+            </figure>
           </div>
-          <div className="orbit" aria-hidden="true"><span>8</span><small>YEARS<br />BUILDING</small></div>
         </section>
 
         <section className="journey section" id="journey">
@@ -180,11 +181,15 @@ function App() {
 
         <section className="contact section" id="contact">
           <span className="kicker">Epilogue · What’s next?</span>
-          <h2>Let’s build the<br /><em>next chapter.</em></h2>
-          <p>I’m interested in ambitious products, thoughtful engineering teams, and problems that deserve both technical depth and clear leadership.</p>
-          <div className="contact-actions">
-            <a className="primary-action" href="mailto:aref.shadbakhsh@gmail.com"><Mail size={20} /> Start a conversation <ArrowUpRight size={20} /></a>
-            <a className="secondary-action" href="/Aref_Shadbakhsh_Resume.pdf" download><Download size={18} /> Download résumé</a>
+          <div className="contact-grid">
+            <div><h2>Let’s build the<br /><em>next chapter.</em></h2><p>I’m interested in ambitious products, thoughtful engineering teams, and problems that deserve both technical depth and clear leadership.</p></div>
+            <div className="contact-card">
+              <span>Have a project or role in mind?</span>
+              <h3>Tell me what you’re building.</h3>
+              <a className="primary-action" href="mailto:aref.shadbakhsh@gmail.com?subject=Project%20conversation%20with%20Aref"><Mail size={20} /> Email Aref <ArrowUpRight size={20} /></a>
+              <a className="email-address" href="mailto:aref.shadbakhsh@gmail.com">aref.shadbakhsh@gmail.com</a>
+              <div className="contact-links"><a href="https://github.com/arefshadbakhsh" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={14} /></a><a href="/Aref_Shadbakhsh_Resume.pdf" download><Download size={14} /> Résumé</a></div>
+            </div>
           </div>
           <footer><span>© {new Date().getFullYear()} Aref Shadbakhsh</span><span>Built with care in Tehran</span><a href="mailto:aref.shadbakhsh@gmail.com">aref.shadbakhsh@gmail.com</a></footer>
         </section>
