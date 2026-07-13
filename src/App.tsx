@@ -17,9 +17,9 @@ const roles = [
     years: '2025 — 2026',
     number: '03',
     title: 'AI Backend Developer & PM',
-    company: 'Dredge Analytics · 3D Continuum',
-    story: 'Built analytics, scraping, search, ETL, and cloud services across Java, Angular, Redis, OpenSearch, and AWS.',
-    tags: ['Java', 'Spring Boot', 'Angular', 'Redis', 'OpenSearch', 'EC2', 'ECS', 'AWS ETL', 'Scraping'],
+    company: 'Industrial Analytics Platform · Client Project',
+    story: 'Built an industrial analytics and decision-support platform across Java, Angular, search, ETL, data collection, and AWS infrastructure.',
+    tags: ['Java', 'Spring Boot', 'Angular', 'PostgreSQL', 'Redis', 'OpenSearch', 'EC2', 'ECS', 'S3', 'AWS Glue', 'ETL', 'Web Scraping'],
   },
   {
     years: '2020 — 2023',
@@ -48,21 +48,21 @@ const projects = [
     color: 'amber', link: 'https://nobatlink.shop', status: 'User testing',
   },
   {
-    index: '02', title: 'Bogzin Platform', type: 'Commerce infrastructure', symbol: 'commerce',
+    index: '02', key: 'bogzin', title: 'Bogzin Platform', type: 'Commerce infrastructure', symbol: 'commerce',
     summary: 'The operating system behind a B2B/B2C marketplace — from trust and verification to the final movement of inventory and money.',
     details: ['Order & payment lifecycles', 'Wallets, refunds & reservations', 'Admin and operational tooling'],
     tags: ['Kotlin', 'Angular', 'Next.js', 'PostgreSQL', 'Redis'],
     color: 'clay', status: 'Production', logo: '/bogzin-logo.png', link: 'https://bogzin.com/',
   },
   {
-    index: '03', title: 'Dredge Analytics', type: 'Analytics & data platform', symbol: 'nodes',
-    summary: 'A distributed analytics platform spanning Java services, scraping, search, ETL, and production AWS infrastructure.',
-    details: ['Scraping & ETL pipelines', 'OpenSearch & Redis services', 'AWS production infrastructure'],
-    tags: ['Java', 'Spring Boot', 'Angular', 'Redis', 'OpenSearch', 'EC2', 'ECS', 'AWS ETL'],
-    color: 'moss', status: 'Client work', link: 'https://dev-manager.dredgeanalytics.com/',
+    index: '03', key: 'industrial', title: 'Digital Analytics and Decision Support Platform for Industrial Applications', type: 'Industrial analytics & decision support', symbol: 'nodes',
+    summary: 'A distributed platform that turns industrial data into searchable analytics and decision-ready information through collection pipelines, ETL jobs, operational dashboards, and cloud services.',
+    details: ['Industrial data collection & ETL', 'Search, analytics & decision support', 'Production-ready AWS architecture'],
+    tags: ['Java', 'Spring Boot', 'Angular', 'PostgreSQL', 'Redis', 'OpenSearch', 'Web Scraping', 'ETL', 'Docker', 'AWS EC2', 'AWS ECS', 'AWS S3', 'AWS Glue', 'Load Balancer'],
+    color: 'moss', status: 'Client work', link: '',
   },
   {
-    index: '04', title: 'DecentraBNB', type: 'Blockchain product', symbol: 'chain',
+    index: '04', key: 'decentra', title: 'DecentraBNB', type: 'Blockchain product', symbol: 'chain',
     summary: 'A product experience for a decentralized hospitality concept, balancing unfamiliar technology with familiar, usable journeys.',
     details: ['Frontend team leadership', 'Angular & React interfaces', 'Java backend contribution'],
     tags: ['Angular', 'React', 'Spring Boot', 'PostgreSQL'],
@@ -77,10 +77,10 @@ function App() {
   const t = copy[lang]
   const chapters = chapterIds.map((id, index) => ({ id, label: t.nav[index] }))
   const localizedProjects = projects.slice(1).map(project => {
-    const key = project.title === 'Bogzin Platform' ? 'bogzin' : project.title === 'Dredge Analytics' ? 'drage' : 'decentra'
-    const translated = t.projects[key]
-    const statusIndex = key === 'bogzin' ? 0 : key === 'drage' ? 1 : 2
-    return { ...project, type: translated[0], summary: translated[1], details: translated[2], status: t.statusLabels[statusIndex] }
+    const key = project.key! as keyof typeof t.projects
+    const translated = t.projects[key] as readonly [string, string, readonly string[]]
+    const statusIndex = key === 'bogzin' ? 0 : key === 'industrial' ? 1 : 2
+    return { ...project, title: t.projectTitles[key], type: translated[0], summary: translated[1], details: translated[2], status: t.statusLabels[statusIndex] }
   })
 
   useEffect(() => {
@@ -172,15 +172,19 @@ function App() {
           <div className="case-list">
             {localizedProjects.map(project => (
               <article className="case-row" key={project.index}>
-                <a className="case-brand" href={project.link} target="_blank" rel="noreferrer" aria-label={`${project.title} website`}>
-                  {'logo' in project && project.logo ? <img src={project.logo} alt={`${project.title} logo`} /> : <strong>DREDGE<span>ANALYTICS</span></strong>}
-                </a>
+                {project.link ? (
+                  <a className="case-brand" href={project.link} target="_blank" rel="noreferrer" aria-label={`${project.title} website`}>
+                    {'logo' in project && project.logo ? <img src={project.logo} alt={`${project.title} logo`} /> : null}
+                  </a>
+                ) : (
+                  <div className="case-brand industrial-mark" aria-hidden="true"><strong>INDUSTRIAL<span>ANALYTICS · DECISION SUPPORT</span></strong></div>
+                )}
                 <div className="case-row-copy">
                   <div className="project-top"><span>{project.type}</span><span className="project-status">{project.status}</span></div>
-                  <h3>{project.title}</h3><p>{project.summary}</p>
+                  <h3 className={project.key === 'industrial' ? 'long-project-title' : undefined}>{project.title}</h3><p>{project.summary}</p>
                   <div className="project-tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div>
                   <ul>{project.details.map(item => <li key={item}>{item}</li>)}</ul>
-                  <a className="case-visit" href={project.link} target="_blank" rel="noreferrer">{t.viewProject} <ArrowUpRight size={15} /></a>
+                  {project.link && <a className="case-visit" href={project.link} target="_blank" rel="noreferrer">{t.viewProject} <ArrowUpRight size={15} /></a>}
                 </div>
               </article>
             ))}
