@@ -17,9 +17,9 @@ const roles = [
     years: '2025 — 2026',
     number: '03',
     title: 'AI Backend Developer & PM',
-    company: '3D Continuum · Custom RAG',
-    story: 'Built retrieval systems from ingestion to answer: document parsing, chunking, embeddings, vector search, and the services around them.',
-    tags: ['Python', 'FastAPI', 'Spring Boot', 'Neo4j', 'PostgreSQL', 'Redis', 'AWS Bedrock', 'SageMaker', 'AWS Glue'],
+    company: 'Dredge Analytics · 3D Continuum',
+    story: 'Built analytics, scraping, search, ETL, and cloud services across Java, Angular, Redis, OpenSearch, and AWS.',
+    tags: ['Java', 'Spring Boot', 'Angular', 'Redis', 'OpenSearch', 'EC2', 'ECS', 'AWS ETL', 'Scraping'],
   },
   {
     years: '2020 — 2023',
@@ -52,21 +52,21 @@ const projects = [
     summary: 'The operating system behind a B2B/B2C marketplace — from trust and verification to the final movement of inventory and money.',
     details: ['Order & payment lifecycles', 'Wallets, refunds & reservations', 'Admin and operational tooling'],
     tags: ['Kotlin', 'Angular', 'Next.js', 'PostgreSQL', 'Redis'],
-    color: 'clay', status: 'Production',
+    color: 'clay', status: 'Production', logo: '/bogzin-logo.png', link: 'https://bogzin.com/',
   },
   {
-    index: '03', title: 'Drage Analytics', type: 'Analytics & data platform', symbol: 'nodes',
+    index: '03', title: 'Dredge Analytics', type: 'Analytics & data platform', symbol: 'nodes',
     summary: 'A distributed analytics platform spanning Java services, scraping, search, ETL, and production AWS infrastructure.',
     details: ['Scraping & ETL pipelines', 'OpenSearch & Redis services', 'AWS production infrastructure'],
     tags: ['Java', 'Spring Boot', 'Angular', 'Redis', 'OpenSearch', 'EC2', 'ECS', 'AWS ETL'],
-    color: 'moss', status: 'Client work',
+    color: 'moss', status: 'Client work', link: 'https://dev-manager.dredgeanalytics.com/',
   },
   {
     index: '04', title: 'DecentraBNB', type: 'Blockchain product', symbol: 'chain',
     summary: 'A product experience for a decentralized hospitality concept, balancing unfamiliar technology with familiar, usable journeys.',
     details: ['Frontend team leadership', 'Angular & React interfaces', 'Java backend contribution'],
     tags: ['Angular', 'React', 'Spring Boot', 'PostgreSQL'],
-    color: 'ink', status: 'Selected work',
+    color: 'ink', status: 'Selected work', logo: '/decentrabnb-logo.png', link: 'https://coinmarketcap.com/currencies/decentrabnb/',
   },
 ]
 
@@ -77,7 +77,7 @@ function App() {
   const t = copy[lang]
   const chapters = chapterIds.map((id, index) => ({ id, label: t.nav[index] }))
   const localizedProjects = projects.slice(1).map(project => {
-    const key = project.title === 'Bogzin Platform' ? 'bogzin' : project.title === 'Drage Analytics' ? 'drage' : 'decentra'
+    const key = project.title === 'Bogzin Platform' ? 'bogzin' : project.title === 'Dredge Analytics' ? 'drage' : 'decentra'
     const translated = t.projects[key]
     const statusIndex = key === 'bogzin' ? 0 : key === 'drage' ? 1 : 2
     return { ...project, type: translated[0], summary: translated[1], details: translated[2], status: t.statusLabels[statusIndex] }
@@ -140,7 +140,6 @@ function App() {
             <figure className="portrait-wrap">
               <img src="/aref-shadbakhsh.jpg" alt="Aref Shadbakhsh" />
               <figcaption><span>{t.current}</span> {t.currentText}</figcaption>
-              <div className="experience-stamp"><strong>8+</strong><small>{t.years}</small></div>
             </figure>
           </div>
         </section>
@@ -173,12 +172,15 @@ function App() {
           <div className="case-list">
             {localizedProjects.map(project => (
               <article className="case-row" key={project.index}>
-                <div className={`case-visual ${project.symbol}`} aria-hidden="true"><span /><span /><span />{project.title === 'Drage Analytics' && <b>DRAGE<br />ANALYTICS</b>}</div>
+                <a className="case-brand" href={project.link} target="_blank" rel="noreferrer" aria-label={`${project.title} website`}>
+                  {'logo' in project && project.logo ? <img src={project.logo} alt={`${project.title} logo`} /> : <strong>DREDGE<span>ANALYTICS</span></strong>}
+                </a>
                 <div className="case-row-copy">
                   <div className="project-top"><span>{project.type}</span><span className="project-status">{project.status}</span></div>
                   <h3>{project.title}</h3><p>{project.summary}</p>
                   <div className="project-tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div>
                   <ul>{project.details.map(item => <li key={item}>{item}</li>)}</ul>
+                  <a className="case-visit" href={project.link} target="_blank" rel="noreferrer">{t.viewProject} <ArrowUpRight size={15} /></a>
                 </div>
               </article>
             ))}
@@ -220,7 +222,7 @@ function App() {
           <span className="kicker">{t.epilogue}</span>
           <div className="contact-grid">
             <div><h2>{t.next}</h2><p>{t.interest}</p></div>
-            <div className="contact-profile"><img src="/aref-shadbakhsh.jpg" alt="Aref Shadbakhsh" /><div className="contact-card">
+            <div className="contact-profile"><div className="contact-card">
               <span>{t.projectMind}</span>
               <h3>{t.tell}</h3>
               <a className="primary-action" href="mailto:aref.shadbakhsh@gmail.com?subject=Project%20conversation%20with%20Aref"><Mail size={20} /> {t.email} <ArrowUpRight size={20} /></a>

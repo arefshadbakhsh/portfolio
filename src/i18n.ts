@@ -32,7 +32,7 @@ export const copy = {
       decentra: ['Blockchain product', 'A decentralized hospitality product where I led frontend delivery, shaped user flows, coordinated the frontend team, and contributed to Java backend services and PostgreSQL integration.', ['Frontend team leadership', 'Angular & React interfaces', 'Java backend contribution']],
     },
     epilogue: 'What’s next?', next: 'Let’s build the next chapter.', interest: 'I’m interested in ambitious products, thoughtful engineering teams, and problems that deserve both technical depth and clear leadership.',
-    projectMind: 'Have a project or role in mind?', tell: 'Tell me what you’re building.', email: 'Email Aref', builtIn: 'Built with care in Rasht', resume: 'Résumé',
+    projectMind: 'Have a project or role in mind?', tell: 'Tell me what you’re building.', email: 'Email Aref', builtIn: 'Built with care in Rasht', resume: 'Résumé', viewProject: 'View project source',
   },
   fa: {
     nav: ['درباره من', 'پروژه‌ها', 'رویکرد', 'تجربه', 'ارتباط'], available: 'آماده همکاری روی پروژه مناسب',
@@ -65,7 +65,7 @@ export const copy = {
       decentra: ['محصول بلاکچین', 'محصولی در حوزه اقامت غیرمتمرکز که در آن رهبری تحویل فرانت‌اند، طراحی جریان‌های کاربر، هماهنگی تیم و مشارکت در سرویس‌های جاوا و PostgreSQL را بر عهده داشتم.', ['رهبری تیم فرانت‌اند', 'رابط‌های Angular و React', 'مشارکت در بک‌اند جاوا']],
     },
     epilogue: 'قدم بعدی چیست؟', next: 'فصل بعدی را با هم بسازیم.', interest: 'به محصولات بلندپروازانه، تیم‌های مهندسی دقیق و مسائلی علاقه‌مندم که هم عمق فنی و هم رهبری روشن می‌خواهند.',
-    projectMind: 'پروژه یا موقعیتی در ذهن دارید؟', tell: 'از چیزی که می‌سازید برایم بگویید.', email: 'ارسال ایمیل', builtIn: 'ساخته‌شده با دقت در رشت', resume: 'رزومه',
+    projectMind: 'پروژه یا موقعیتی در ذهن دارید؟', tell: 'از چیزی که می‌سازید برایم بگویید.', email: 'ارسال ایمیل', builtIn: 'ساخته‌شده با دقت در رشت', resume: 'رزومه', viewProject: 'مشاهده منبع پروژه',
   },
   de: {
     nav: ['Über mich', 'Projekte', 'Arbeitsweise', 'Erfahrung', 'Kontakt'], available: 'Offen für das richtige Projekt',
@@ -98,6 +98,6 @@ export const copy = {
       decentra: ['Blockchain-Produkt', 'Ein dezentrales Hospitality-Produkt: Leitung der Frontend-Auslieferung, Gestaltung der Nutzerabläufe, Teamkoordination und Mitarbeit an Java-Services und PostgreSQL.', ['Frontend-Teamleitung', 'Angular- und React-Oberflächen', 'Mitarbeit am Java-Backend']],
     },
     epilogue: 'Was kommt als Nächstes?', next: 'Lassen Sie uns das nächste Kapitel bauen.', interest: 'Mich interessieren ambitionierte Produkte, durchdachte Engineering-Teams und Probleme, die technische Tiefe und klare Führung verlangen.',
-    projectMind: 'Ein Projekt oder eine Rolle im Kopf?', tell: 'Erzählen Sie mir, was Sie bauen.', email: 'Aref kontaktieren', builtIn: 'Mit Sorgfalt in Rascht gebaut', resume: 'Lebenslauf',
+    projectMind: 'Ein Projekt oder eine Rolle im Kopf?', tell: 'Erzählen Sie mir, was Sie bauen.', email: 'Aref kontaktieren', builtIn: 'Mit Sorgfalt in Rascht gebaut', resume: 'Lebenslauf', viewProject: 'Projektquelle ansehen',
   },
 } as const
