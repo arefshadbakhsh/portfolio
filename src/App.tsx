@@ -224,7 +224,7 @@ function App() {
           <div className="timeline compact">
             {roles.map((role, index) => (
               <article className="role" key={role.number}>
-                <div className="role-meta"><time>{role.years}</time></div>
+                <div className="role-meta"><time>{t.roleYears[index]}</time></div>
                 <div className="role-body"><p className="company">{role.company}</p><h3>{t.roleTitles[index]}</h3><p>{t.roles[index]}</p><div className="tags">{role.tags.map(tag => <span key={tag}>{tag}</span>)}</div></div>
               </article>
             ))}

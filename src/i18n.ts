@@ -20,6 +20,7 @@ export const copy = {
     ],
     experience: '03 · Experience', experienceTitle: 'Eight years, one widening frame.', experienceCopy: 'Frontend craft became product ownership, architecture, production operations, and technical leadership.',
     roleTitles: ['CTO & Full-Stack Developer', 'AI Backend Developer & PM', 'Frontend Lead → Project Manager', 'Intern → Frontend Developer'], statusLabels: ['Production', 'Client work', 'Selected work'],
+    roleYears: ['2022 — now', '2025 — 2026', '2020 — 2023', '2018 — 2020'],
     roles: [
       'Advanced through 4 roles while directing a 10+ member cross-functional team across 6 product domains: business verification, order and payment lifecycles, wallet and refund operations, inventory reservation, administration, and internal tools.',
       'Engineered a 5-stage RAG pipeline covering document ingestion, text extraction, chunking, embeddings, and retrieval. Connected PostgreSQL, Neo4j, and Redis to AWS services for model inference, knowledge relationships, caching, and lightweight ETL processing.',
@@ -56,6 +57,7 @@ export const copy = {
     ],
     experience: '۰۳ · تجربه', experienceTitle: 'هشت سال، با نگاهی هر بار وسیع‌تر.', experienceCopy: 'مهارت فرانت‌اند به مالکیت محصول، معماری، عملیات تولید و رهبری فنی گسترش یافت.',
     roleTitles: ['مدیر فناوری و توسعه‌دهنده فول‌استک', 'توسعه‌دهنده بک‌اند هوش مصنوعی و مدیر پروژه', 'رهبر فرانت‌اند ← مدیر پروژه', 'کارآموز ← توسعه‌دهنده فرانت‌اند'], statusLabels: ['محیط تولید', 'پروژه مشتری', 'پروژه منتخب'],
+    roleYears: ['۱۴۰۱ — اکنون', '۱۴۰۴ — ۱۴۰۵', '۱۳۹۹ — ۱۴۰۲', '۱۳۹۷ — ۱۳۹۹'],
     roles: [
       'پیشرفت از ۴ نقش مختلف و هدایت تیمی بیش از ۱۰ نفر در ۶ حوزه محصول: احراز هویت کسب‌وکار، چرخه سفارش و پرداخت، کیف پول و بازپرداخت، رزرو موجودی، مدیریت و ابزارهای داخلی.',
       'طراحی و پیاده‌سازی خط لوله RAG پنج‌مرحله‌ای شامل استخراج سند، استخراج متن، تقسیم‌بندی، بردارها و بازیابی. اتصال PostgreSQL، Neo4j و Redis به سرویس‌های AWS برای استنتاج مدل، روابط دانش، کشینگ و ETL سبک.',
@@ -92,6 +94,7 @@ export const copy = {
     ],
     experience: '03 · Erfahrung', experienceTitle: 'Acht Jahre, ein immer größerer Blickwinkel.', experienceCopy: 'Frontend-Handwerk entwickelte sich zu Produktverantwortung, Architektur, Betrieb und technischer Führung.',
     roleTitles: ['CTO & Full-Stack-Entwickler', 'KI-Backend-Entwickler & Projektmanager', 'Frontend Lead → Projektmanager', 'Praktikant → Frontend-Entwickler'], statusLabels: ['Produktion', 'Kundenprojekt', 'Ausgewählte Arbeit'],
+    roleYears: ['2022 — jetzt', '2025 — 2026', '2020 — 2023', '2018 — 2020'],
     roles: [
       'Fortgeschrittene durch 4 Rollen und leitete ein interdisziplinäres Team mit über zehn Personen in 6 Produktbereichen: Geschäftsverifizierung, Bestell- und Zahlungsabläufe, Wallet- und Rückerstattungsoperationen, Bestandsreservierung, Verwaltung und interne Werkzeuge.',
       'Entwickelte eine 5-stufige RAG-Pipeline für Dokumentenaufnahme, Textextraktion, Chunking, Embeddings und Abruf. Verband PostgreSQL, Neo4j und Redis mit AWS-Diensten für Modellinferenz, Wissensbeziehungen, Caching und leichtes ETL-Processing.',
