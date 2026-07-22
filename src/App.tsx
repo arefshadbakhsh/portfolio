@@ -204,7 +204,7 @@ function App() {
                 )}
                 <div className="case-row-copy">
                   <div className="project-top"><span>{project.type}</span><span className="project-status">{project.status}</span></div>
-                  <h3 className={project.key === 'industrial' ? 'long-project-title' : undefined}>{project.title}</h3><p>{project.summary}</p>
+                  <h3>{project.title}</h3><p>{project.summary}</p>
                   <div className="case-row-tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div>
                   <ul>{project.details.map(item => <li key={item}>{item}</li>)}</ul>
                   {project.link && <a className="case-visit" href={project.link} target="_blank" rel="noreferrer">{t.viewProject} <ArrowUpRight size={15} /></a>}
