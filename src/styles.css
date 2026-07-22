@@ -25,6 +25,8 @@
   --shadow-lg: 0 4px 8px rgba(0,0,0,.3), 0 16px 48px rgba(0,0,0,.3);
   --transition: cubic-bezier(.4,0,.2,1);
   --logo-bg: rgba(255,255,255,.92);
+  color: var(--text-primary);
+  background: var(--bg);
 }
 
 [data-theme="light"] {
@@ -51,7 +53,7 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; scroll-padding-top: 80px; }
-body { min-width: 320px; background: var(--bg); overflow-x: hidden; }
+body { min-width: 320px; background: var(--bg); color: var(--text-primary); overflow-x: hidden; }
 button, a { font: inherit; }
 button { color: inherit; }
 a { color: inherit; }
