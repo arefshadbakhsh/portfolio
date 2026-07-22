@@ -1,41 +1,41 @@
 import { useEffect, useState } from 'react'
-import { ArrowDown, ArrowUpRight, Download, Mail, Menu, X } from 'lucide-react'
+import { ArrowDown, ArrowUpRight, Download, Github, Linkedin, Mail, Menu, X } from 'lucide-react'
 import { copy, type Language } from './i18n'
 
-const chapterIds = ['prologue', 'work', 'systems', 'journey', 'contact']
+const chapterIds = ['prologue', 'work', 'systems', 'journey', 'education', 'contact']
 
 const roles = [
   {
-    years: '2025 — now',
+    years: '2022 — now',
     number: '04',
     title: 'CTO & Full-Stack Developer',
     company: 'Bogzin',
-    story: 'Leading a 10+ person cross-functional team while staying close to the code. I turn product questions into architecture, releases, and systems that hold up in production.',
-    tags: ['Kotlin', 'Spring Boot', 'Angular', 'Next.js', 'PostgreSQL', 'Redis', 'Docker Swarm', 'Nginx', 'GitLab CI/CD'],
+    story: 'Advanced through 4 roles while directing a 10+ member cross-functional team across 6 product domains: business verification, order and payment lifecycles, wallet and refund operations, inventory reservation, administration, and internal tools.',
+    tags: ['Kotlin', 'Spring Boot', 'Angular', 'Next.js', 'PostgreSQL', 'Redis', 'Docker Swarm', 'Nginx', 'GitLab CI/CD', 'Architecture', 'Code Review', 'Release Management'],
   },
   {
     years: '2025 — 2026',
     number: '03',
     title: 'AI Backend Developer & PM',
-    company: 'Industrial Analytics Platform · Client Project',
-    story: 'Built an industrial analytics and decision-support platform across Java, Angular, search, ETL, data collection, and AWS infrastructure.',
-    tags: ['Java', 'Spring Boot', 'Angular', 'PostgreSQL', 'Redis', 'OpenSearch', 'EC2', 'ECS', 'S3', 'AWS Glue', 'ETL', 'Web Scraping'],
+    company: 'Confidential Industrial Analytics Product',
+    story: 'Engineered a 5-stage RAG pipeline covering document ingestion, text extraction, chunking, embeddings, and retrieval. Connected PostgreSQL, Neo4j, and Redis to AWS services for model inference, knowledge relationships, caching, and lightweight ETL processing.',
+    tags: ['Java', 'Spring Boot', 'Angular', 'Python', 'FastAPI', 'PostgreSQL', 'Neo4j', 'Redis', 'AWS Bedrock', 'OpenSearch', 'AWS Glue', 'Docker', 'RAG', 'ETL'],
   },
   {
     years: '2020 — 2023',
     number: '02',
     title: 'Frontend Lead → Project Manager',
     company: 'Nilasoft',
-    story: 'Grew from shipping interfaces to guiding delivery. Led frontend work, contributed to Spring services, ran sprints, and learned how teams make good software together.',
-    tags: ['Angular', 'React', 'TypeScript', 'Spring Boot', 'PostgreSQL', 'REST APIs', 'Scrum', 'Leadership'],
+    story: 'Took on 4 distinct responsibilities: Frontend Team Lead, Backend Developer, Scrum Master, and Project Manager. Standardized source control, code review, sprint planning, task tracking, and release coordination.',
+    tags: ['Angular', 'React', 'Java', 'Spring Boot', 'PostgreSQL', 'Jira', 'Scrum', 'Leadership'],
   },
   {
     years: '2018 — 2020',
     number: '01',
     title: 'Intern → Frontend Developer',
     company: 'Nilasoft',
-    story: 'The beginning: reusable components, real APIs, stubborn bugs, and the habit of asking why before deciding how.',
-    tags: ['TypeScript', 'Angular', 'HTML', 'CSS'],
+    story: 'Earned promotion within 2 years by implementing Angular features, forms, API integrations, and reusable UI components. Built the discipline of solving real interface problems.',
+    tags: ['TypeScript', 'Angular', 'HTML', 'CSS', 'REST APIs'],
   },
 ]
 
@@ -55,11 +55,11 @@ const projects = [
     color: 'clay', status: 'Production', logo: '/bogzin-logo.png', link: 'https://bogzin.com/',
   },
   {
-    index: '03', key: 'industrial', title: 'Digital Analytics and Decision Support Platform for Industrial Applications', type: 'Industrial analytics & decision support', symbol: 'nodes',
-    summary: 'A distributed platform that turns industrial data into searchable analytics and decision-ready information through collection pipelines, ETL jobs, operational dashboards, and cloud services.',
-    details: ['Industrial data collection & ETL', 'Search, analytics & decision support', 'Production-ready AWS architecture'],
-    tags: ['Java', 'Spring Boot', 'Angular', 'PostgreSQL', 'Redis', 'OpenSearch', 'Web Scraping', 'ETL', 'Docker', 'AWS EC2', 'AWS ECS', 'AWS S3', 'AWS Glue', 'Load Balancer'],
-    color: 'moss', status: 'Client work', link: '',
+    index: '03', key: 'industrial', title: 'Digital Analytics and Decision Support Platform', type: 'Industrial analytics & decision support', symbol: 'nodes',
+    summary: 'A distributed platform that turns industrial data into searchable analytics and decision-ready information through a 5-stage RAG pipeline, collection pipelines, ETL jobs, and cloud services.',
+    details: ['5-stage RAG pipeline & document processing', 'Search, analytics & decision support', 'Production-ready AWS architecture'],
+    tags: ['Java', 'Spring Boot', 'Angular', 'Python', 'FastAPI', 'PostgreSQL', 'Neo4j', 'Redis', 'AWS Bedrock', 'OpenSearch', 'Docker', 'AWS Glue', 'AWS EC2', 'AWS ECS', 'AWS S3'],
+    color: 'moss', status: 'Client work', logo: '/digital_analytics_logo.png', link: '',
   },
   {
     index: '04', key: 'decentra', title: 'DecentraBNB', type: 'Blockchain product', symbol: 'chain',
@@ -67,6 +67,13 @@ const projects = [
     details: ['Frontend team leadership', 'Angular & React interfaces', 'Java backend contribution'],
     tags: ['Angular', 'React', 'Spring Boot', 'PostgreSQL'],
     color: 'ink', status: 'Selected work', logo: '/decentrabnb-logo.png', link: 'https://coinmarketcap.com/currencies/decentrabnb/',
+  },
+  {
+    index: '05', key: 'marco', title: 'MARCO ICO', type: 'Blockchain product', symbol: 'chain',
+    summary: 'A tourism-focused Ethereum ERC-20 ICO and decentralized travel product, implementing user journeys, reusable interface components, and API integrations.',
+    details: ['ERC-20 token implementation', 'User journey design', 'API integrations & platform functionality'],
+    tags: ['Angular', 'TypeScript', 'Ethereum', 'ERC-20', 'REST APIs'],
+    color: 'ink', status: 'Selected work', logo: '/marco_logo_hq.png', link: 'https://foundico.com/ico/marco.html',
   },
 ]
 
@@ -79,7 +86,7 @@ function App() {
   const localizedProjects = projects.slice(1).map(project => {
     const key = project.key! as keyof typeof t.projects
     const translated = t.projects[key] as readonly [string, string, readonly string[]]
-    const statusIndex = key === 'bogzin' ? 0 : key === 'industrial' ? 1 : 2
+    const statusIndex = key === 'bogzin' ? 0 : key === 'industrial' ? 1 : key === 'marco' ? 2 : 2
     return { ...project, title: t.projectTitles[key], type: translated[0], summary: translated[1], details: translated[2], status: t.statusLabels[statusIndex] }
   })
 
@@ -174,8 +181,10 @@ function App() {
               <article className="case-row" key={project.index}>
                 {project.link ? (
                   <a className="case-brand" href={project.link} target="_blank" rel="noreferrer" aria-label={`${project.title} website`}>
-                    {'logo' in project && project.logo ? <img src={project.logo} alt={`${project.title} logo`} /> : null}
+                    {'logo' in project && project.logo ? <img src={project.logo} alt={`${project.title} logo`} /> : <strong>{project.title}</strong>}
                   </a>
+                ) : 'logo' in project && project.logo ? (
+                  <div className="case-brand" aria-hidden="true"><img src={project.logo} alt={`${project.title} logo`} /></div>
                 ) : (
                   <div className="case-brand industrial-mark" aria-hidden="true"><strong>INDUSTRIAL<span>ANALYTICS · DECISION SUPPORT</span></strong></div>
                 )}
@@ -202,7 +211,7 @@ function App() {
           </div>
           <div className="toolbox">
             <span>{t.vocabulary}</span>
-            <p>Kotlin · Java · Spring Boot · Angular · React · Next.js · TypeScript · PostgreSQL · Redis · Neo4j · FastAPI · Docker · Nginx · GitLab CI/CD · AWS</p>
+            <p>Kotlin · Java · Spring Boot · Spring Data JPA · Hibernate · Angular · React · Next.js · TypeScript · PostgreSQL · Redis · Neo4j · Python · FastAPI · AWS Bedrock · Docker · Nginx · GitLab CI/CD · Prometheus · Grafana · Loki</p>
           </div>
         </section>
 
@@ -222,6 +231,31 @@ function App() {
           </div>
         </section>
 
+        <section className="education section" id="education">
+          <div className="systems-intro">
+            <span className="kicker">{t.educationKicker}</span>
+            <h2 className="education-title">{t.educationTitle}</h2>
+          </div>
+          <div className="education-grid">
+            <article className="education-card">
+              <img src="/university_guilan_mark.png" alt="University of Guilan" className="edu-logo" />
+              <div>
+                <h3>{t.edu1Degree}</h3>
+                <p className="edu-school">{t.edu1School}</p>
+                <span className="edu-gpa">{t.edu1Gpa}</span>
+              </div>
+            </article>
+            <article className="education-card">
+              <img src="/iau_mark.png" alt="Islamic Azad University" className="edu-logo" />
+              <div>
+                <h3>{t.edu2Degree}</h3>
+                <p className="edu-school">{t.edu2School}</p>
+                <span className="edu-status">{t.edu2Status}</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
         <section className="contact section" id="contact">
           <span className="kicker">{t.epilogue}</span>
           <div className="contact-grid">
@@ -231,7 +265,11 @@ function App() {
               <h3>{t.tell}</h3>
               <a className="primary-action" href="mailto:aref.shadbakhsh@gmail.com?subject=Project%20conversation%20with%20Aref"><Mail size={20} /> {t.email} <ArrowUpRight size={20} /></a>
               <a className="email-address" href="mailto:aref.shadbakhsh@gmail.com">aref.shadbakhsh@gmail.com</a>
-              <div className="contact-links"><a href="https://github.com/arefshadbakhsh" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={14} /></a><a href="/Aref_Shadbakhsh_Resume.pdf" download><Download size={14} /> {t.resume}</a></div>
+              <div className="contact-links">
+              <a href="https://github.com/arefshadbakhsh" target="_blank" rel="noreferrer"><Github size={14} /> GitHub <ArrowUpRight size={14} /></a>
+              <a href="https://www.linkedin.com/in/aref-shadbakhsh-05a95b194/" target="_blank" rel="noreferrer"><Linkedin size={14} /> LinkedIn <ArrowUpRight size={14} /></a>
+              <a href="/Aref_Shadbakhsh_Resume.pdf" download><Download size={14} /> {t.resume}</a>
+            </div>
             </div></div>
           </div>
           <footer><span>© {new Date().getFullYear()} Aref Shadbakhsh</span><span>{t.builtIn}</span><a href="mailto:aref.shadbakhsh@gmail.com">aref.shadbakhsh@gmail.com</a></footer>
