@@ -24,9 +24,29 @@
   --shadow: 0 1px 2px rgba(0,0,0,.3), 0 4px 16px rgba(0,0,0,.2);
   --shadow-lg: 0 4px 8px rgba(0,0,0,.3), 0 16px 48px rgba(0,0,0,.3);
   --transition: cubic-bezier(.4,0,.2,1);
-  --logo-bg: rgba(255,255,255,.92);
-  color: var(--text-primary);
-  background: var(--bg);
+  --logo-bg: rgba(255,255,255,.08);
+}
+
+[data-theme="light"] {
+  --bg: #f5f5f7;
+  --bg-elevated: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f0f0f2;
+  --surface: rgba(0,0,0,.04);
+  --surface-hover: rgba(0,0,0,.07);
+  --border: rgba(0,0,0,.1);
+  --border-hover: rgba(0,0,0,.18);
+  --text-primary: #111114;
+  --text-secondary: #48484d;
+  --text-tertiary: #7c7c82;
+  --accent: #4f46e5;
+  --accent-hover: #6366f1;
+  --accent-glow: rgba(79,70,229,.1);
+  --green: #10b981;
+  --green-glow: rgba(16,185,129,.08);
+  --shadow: 0 1px 3px rgba(0,0,0,.08), 0 4px 16px rgba(0,0,0,.04);
+  --shadow-lg: 0 4px 8px rgba(0,0,0,.08), 0 16px 48px rgba(0,0,0,.08);
+  --logo-bg: #e8e8ec;
 }
 
 [data-theme="light"] {
@@ -519,7 +539,8 @@ h1 em, h2 em {
   object-fit: contain;
   margin: 36px auto 20px;
   padding: 14px 20px;
-  background: var(--logo-bg);
+  background: var(--surface-hover);
+  border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   display: block;
 }
@@ -755,7 +776,8 @@ h1 em, h2 em {
   object-fit: contain;
   transition: transform .3s var(--transition);
   padding: 16px;
-  background: var(--logo-bg);
+  background: var(--surface-hover);
+  border: 1px solid var(--border);
   border-radius: var(--radius);
 }
 
@@ -1139,7 +1161,8 @@ blockquote em {
   flex-shrink: 0;
   border-radius: var(--radius-sm);
   padding: 10px;
-  background: var(--logo-bg);
+  background: var(--surface-hover);
+  border: 1px solid var(--border);
 }
 
 .education-card h3 {
@@ -1520,7 +1543,7 @@ footer a:hover { color: var(--accent); }
 [dir="rtl"] .principles article > span { font-family: 'Vazirmatn', sans-serif; font-style: normal; }
 [dir="rtl"] .role-meta > time { font-family: 'Vazirmatn', sans-serif; font-style: normal; }
 [dir="rtl"] .supporting-heading span { font-family: 'Vazirmatn', sans-serif; letter-spacing: -.02em; }
-[dir="rtl"] .nobat-logo { background: var(--logo-bg); }
+[dir="rtl"] .nobat-logo { background: var(--surface-hover); }
 [dir="rtl"] .education-card { text-align: right; }
 [dir="rtl"] .scope-orbit span { font-family: 'Vazirmatn', sans-serif; }
 [dir="rtl"] .map-head { direction: rtl; }
