@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { ArrowDown, ArrowUpRight, Download, Github, Linkedin, Mail, Menu, X } from 'lucide-react'
+import { ArrowDown, ArrowUpRight, Download, Github, Linkedin, Mail, Menu, Moon, Sun, X } from 'lucide-react'
 import { copy, type Language } from './i18n'
 
 const chapterIds = ['prologue', 'work', 'systems', 'journey', 'education', 'contact']
@@ -81,6 +81,7 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [active, setActive] = useState('prologue')
   const [lang, setLang] = useState<Language>(() => (localStorage.getItem('portfolio-language') as Language) || 'en')
+  const [theme, setTheme] = useState<'dark' | 'light'>(() => (localStorage.getItem('portfolio-theme') as 'dark' | 'light') || 'dark')
   const t = copy[lang]
   const chapters = chapterIds.map((id, index) => ({ id, label: t.nav[index] }))
   const localizedProjects = projects.slice(1).map(project => {
@@ -105,6 +106,13 @@ function App() {
     localStorage.setItem('portfolio-language', lang)
   }, [lang])
 
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme)
+    localStorage.setItem('portfolio-theme', theme)
+  }, [theme])
+
+  const toggleTheme = () => setTheme(theme === 'dark' ? 'light' : 'dark')
+
   const go = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
     setMenuOpen(false)
@@ -123,7 +131,13 @@ function App() {
             </button>
           ))}
         </nav>
-        <div className="header-end"><div className="language-switch" aria-label="Language">{(['en', 'fa', 'de'] as Language[]).map(code => <button key={code} className={lang === code ? 'active' : ''} onClick={() => setLang(code)}>{code.toUpperCase()}</button>)}</div><a className="availability" href="mailto:aref.shadbakhsh@gmail.com"><i /> {t.available}</a></div>
+        <div className="header-end">
+          <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
+            {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+          </button>
+          <div className="language-switch" aria-label="Language">{(['en', 'fa', 'de'] as Language[]).map(code => <button key={code} className={lang === code ? 'active' : ''} onClick={() => setLang(code)}>{code.toUpperCase()}</button>)}</div>
+          <a className="availability" href="mailto:aref.shadbakhsh@gmail.com"><i /> {t.available}</a>
+        </div>
         <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
           {menuOpen ? <X /> : <Menu />}
         </button>
@@ -191,7 +205,7 @@ function App() {
                 <div className="case-row-copy">
                   <div className="project-top"><span>{project.type}</span><span className="project-status">{project.status}</span></div>
                   <h3 className={project.key === 'industrial' ? 'long-project-title' : undefined}>{project.title}</h3><p>{project.summary}</p>
-                  <div className="project-tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div>
+                  <div className="case-row-tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div>
                   <ul>{project.details.map(item => <li key={item}>{item}</li>)}</ul>
                   {project.link && <a className="case-visit" href={project.link} target="_blank" rel="noreferrer">{t.viewProject} <ArrowUpRight size={15} /></a>}
                 </div>

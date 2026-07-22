@@ -24,12 +24,35 @@
   --shadow: 0 1px 2px rgba(0,0,0,.3), 0 4px 16px rgba(0,0,0,.2);
   --shadow-lg: 0 4px 8px rgba(0,0,0,.3), 0 16px 48px rgba(0,0,0,.3);
   --transition: cubic-bezier(.4,0,.2,1);
+  --logo-bg: rgba(255,255,255,.95);
   font-family: 'Inter', -apple-system, sans-serif;
   color: var(--text-primary);
   background: var(--bg);
   font-synthesis: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+[data-theme="light"] {
+  --bg: #fafafa;
+  --bg-elevated: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f5f5f5;
+  --surface: rgba(0,0,0,.03);
+  --surface-hover: rgba(0,0,0,.06);
+  --border: rgba(0,0,0,.08);
+  --border-hover: rgba(0,0,0,.15);
+  --text-primary: #1a1a1e;
+  --text-secondary: #555558;
+  --text-tertiary: #8a8a8e;
+  --accent: #4f46e5;
+  --accent-hover: #6366f1;
+  --accent-glow: rgba(79,70,229,.1);
+  --green: #10b981;
+  --green-glow: rgba(16,185,129,.08);
+  --shadow: 0 1px 3px rgba(0,0,0,.08), 0 4px 16px rgba(0,0,0,.04);
+  --shadow-lg: 0 4px 8px rgba(0,0,0,.08), 0 16px 48px rgba(0,0,0,.08);
+  --logo-bg: rgba(0,0,0,.04);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -139,7 +162,27 @@ img { max-width: 100%; display: block; }
   justify-self: end;
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
+}
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 30px;
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  background: var(--surface);
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: all .25s var(--transition);
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-glow);
 }
 
 .language-switch {
@@ -482,7 +525,7 @@ h1 em, h2 em {
   object-position: left center;
   margin: 40px 0 24px;
   padding: 12px 16px;
-  background: rgba(255,255,255,.95);
+  background: var(--logo-bg);
   border-radius: var(--radius-sm);
 }
 
@@ -535,8 +578,7 @@ h1 em, h2 em {
   align-items: center;
   justify-content: space-between;
   width: 220px;
-  margin-top: auto;
-  margin-bottom: 16px;
+  margin-top: 20px;
   padding: 14px 18px;
   background: var(--accent);
   color: white;
@@ -717,7 +759,7 @@ h1 em, h2 em {
   object-fit: contain;
   transition: transform .3s var(--transition);
   padding: 12px;
-  background: rgba(255,255,255,.95);
+  background: var(--logo-bg);
   border-radius: var(--radius-sm);
 }
 
@@ -751,8 +793,12 @@ h1 em, h2 em {
 
 .case-row-copy {
   min-width: 0;
-  padding: 56px 0 48px 6vw;
+  padding: 48px 40px 48px 48px;
   max-width: 680px;
+}
+
+[dir="rtl"] .case-row-copy {
+  padding: 48px 48px 48px 40px;
 }
 
 .project-top {
@@ -790,6 +836,29 @@ h1 em, h2 em {
   line-height: 1.75;
   color: var(--text-secondary);
   max-width: 580px;
+}
+
+.case-row-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 16px 0 0;
+}
+
+.case-row-tags span {
+  padding: 5px 10px;
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  font: 500 9px 'JetBrains Mono';
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+  transition: all .25s var(--transition);
+}
+
+.case-row-tags span:hover {
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 .case-row-copy ul {
@@ -1065,7 +1134,7 @@ blockquote em {
   flex-shrink: 0;
   border-radius: var(--radius-sm);
   padding: 8px;
-  background: rgba(255,255,255,.95);
+  background: var(--logo-bg);
 }
 
 .education-card h3 {
@@ -1257,6 +1326,8 @@ footer a:hover { color: var(--accent); }
 
   .desktop-nav, .availability { display: none; }
 
+  .theme-toggle { width: 32px; height: 28px; }
+
   .language-switch button { width: 32px; height: 32px; }
 
   .menu-button {
@@ -1432,7 +1503,8 @@ footer a:hover { color: var(--accent); }
 [dir="rtl"] .contact-grid p { font-size: 15px; line-height: 2; }
 [dir="rtl"] .role-body .company,
 [dir="rtl"] .tags span,
-[dir="rtl"] .project-status { font-family: 'Vazirmatn', sans-serif; font-size: 11px; letter-spacing: 0; }
+[dir="rtl"] .project-status,
+[dir="rtl"] .case-row-tags span { font-family: 'Vazirmatn', sans-serif; font-size: 11px; letter-spacing: 0; }
 [dir="rtl"] .principles article > span { font-family: 'Vazirmatn', sans-serif; font-style: normal; }
 [dir="rtl"] .role-meta > time { font-family: 'Vazirmatn', sans-serif; font-style: normal; }
 [dir="rtl"] .supporting-heading span { font-family: 'Vazirmatn', sans-serif; letter-spacing: -.02em; }
