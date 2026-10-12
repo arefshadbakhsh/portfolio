@@ -31,11 +31,11 @@ export const copy = {
     projects: {
       bogzin: ['Commerce infrastructure', 'The operating system behind a B2B/B2C marketplace. My work spans business verification, orders, payments, wallets, refunds, inventory reservation, admin operations, releases, and production stability.', ['Order & payment lifecycles', 'Wallets, refunds & reservations', 'Admin and operational tooling']],
       industrial: ['Industrial analytics & decision support', 'A distributed platform that turns industrial data into searchable analytics and decision-ready information through a 5-stage RAG pipeline, collection pipelines, ETL jobs, Spring services, Angular dashboards, OpenSearch, Redis, and AWS infrastructure.', ['5-stage RAG pipeline & document processing', 'Search, analytics & decision support', 'Production-ready AWS architecture']],
-      decentra: ['Blockchain product', 'A decentralized hospitality product where I led frontend delivery, shaped user flows, coordinated the frontend team, and contributed to Java backend services and PostgreSQL integration.', ['Frontend team leadership', 'Angular & React interfaces', 'Java backend contribution']],
+      decentra: ['Blockchain product', 'A decentralized hospitality product with web interfaces and a React Native mobile app. I led frontend delivery, shaped user flows, coordinated the frontend team, and contributed to Java backend services and PostgreSQL integration.', ['Frontend team leadership', 'Angular & React web interfaces', 'React Native mobile app', 'Java backend contribution']],
       marco: ['Blockchain product', 'A tourism-focused Ethereum ERC-20 ICO and decentralized travel product, implementing user journeys, reusable interface components, and API integrations.', ['ERC-20 token implementation', 'User journey design', 'API integrations & platform functionality']],
     },
     epilogue: 'What’s next?', next: 'Let’s build the next chapter.', interest: 'I’m interested in ambitious products, thoughtful engineering teams, and problems that deserve both technical depth and clear leadership.',
-    projectMind: 'Have a project or role in mind?', tell: 'Tell me what you’re building.', email: 'Email Aref', builtIn: 'Built with care in Rasht', resume: 'Résumé', viewProject: 'View project source',
+    projectMind: 'Have a project or role in mind?', tell: 'Tell me what you’re building.', email: 'Email Aref', builtIn: 'Built with care in Rasht', resume: 'Résumé', viewProject: 'Visit project',
     educationKicker: '04 · Education', educationTitle: 'Building a stronger foundation.', edu1Degree: 'Bachelor\'s Degree in Computer Engineering', edu1School: 'University of Guilan', edu1Gpa: 'GPA: 15.71/20', edu2Degree: 'M.Sc. in Computer Engineering', edu2School: 'Islamic Azad University', edu2Status: 'In Progress',
   },
   fa: {
@@ -68,11 +68,11 @@ export const copy = {
     projects: {
       bogzin: ['زیرساخت تجارت', 'هسته عملیاتی یک بازار B2B/B2C. فعالیت من احراز کسب‌وکار، سفارش، پرداخت، کیف پول، بازپرداخت، رزرو موجودی، ابزارهای مدیریتی، انتشار و پایداری محیط تولید را پوشش می‌دهد.', ['چرخه سفارش و پرداخت', 'کیف پول، بازپرداخت و رزرو موجودی', 'ابزارهای مدیریت و عملیات']],
       industrial: ['تحلیل صنعتی و پشتیبانی تصمیم', 'پلتفرمی توزیع‌شده که داده‌های صنعتی را از طریق خط لوله RAG پنج‌مرحله‌ای، پایپ‌لاین‌های جمع‌آوری، پردازش ETL، سرویس‌های Spring، داشبوردهای Angular، OpenSearch، Redis و زیرساخت AWS به تحلیل‌های قابل جستجو و اطلاعات مناسب تصمیم‌گیری تبدیل می‌کند.', ['خط لوله RAG پنج‌مرحله‌ای و پردازش سند', 'جستجو، تحلیل و پشتیبانی تصمیم', 'معماری آماده تولید روی AWS']],
-      decentra: ['محصول بلاکچین', 'محصولی در حوزه اقامت غیرمتمرکز که در آن رهبری تحویل فرانت‌اند، طراحی جریان‌های کاربر، هماهنگی تیم و مشارکت در سرویس‌های جاوا و PostgreSQL را بر عهده داشتم.', ['رهبری تیم فرانت‌اند', 'رابط‌های Angular و React', 'مشارکت در بک‌اند جاوا']],
+      decentra: ['محصول بلاکچین', 'محصولی در حوزه اقامت غیرمتمرکز با رابط وب و اپلیکیشن موبایل React Native؛ در آن رهبری تحویل فرانت‌اند، طراحی جریان‌های کاربر، هماهنگی تیم و مشارکت در سرویس‌های جاوا و PostgreSQL را بر عهده داشتم.', ['رهبری تیم فرانت‌اند', 'رابط وب Angular و React', 'اپلیکیشن موبایل React Native', 'مشارکت در بک‌اند جاوا']],
       marco: ['محصول بلاکچین', 'ICO متمرکز بر گردشگری بر پایه Ethereum ERC-20 و محصول سفر غیرمتمرکز، با پیاده‌سازی مسیرهای کاربر، کامپوننت‌های قابل استفاده مجدد و یکپارچه‌سازی API.', ['پیاده‌سازی توکن ERC-20', 'طراحی مسیر کاربر', 'یکپارچه‌سازی API و عملکرد پلتفرم']],
     },
     epilogue: 'قدم بعدی چیست؟', next: 'فصل بعدی را با هم بسازیم.', interest: 'به محصولات بلندپروازانه، تیم‌های مهندسی دقیق و مسائلی علاقه‌مندم که هم عمق فنی و هم رهبری روشن می‌خواهند.',
-    projectMind: 'پروژه یا موقعیتی در ذهن دارید؟', tell: 'از چیزی که می‌سازید برایم بگویید.', email: 'ارسال ایمیل', builtIn: 'ساخته‌شده با دقت در رشت', resume: 'رزومه', viewProject: 'مشاهده منبع پروژه',
+    projectMind: 'پروژه یا موقعیتی در ذهن دارید؟', tell: 'از چیزی که می‌سازید برایم بگویید.', email: 'ارسال ایمیل', builtIn: 'ساخته‌شده با دقت در رشت', resume: 'رزومه', viewProject: 'مشاهده پروژه',
     educationKicker: '۰۴ · تحصیلات', educationTitle: 'تقویت پایه‌های علمی.', edu1Degree: 'کارشناسی مهندسی کامپیوتر', edu1School: 'دانشگاه گیلان', edu1Gpa: ' معدل: ۱۵.۷۱/۲۰', edu2Degree: 'کارشناسی ارشد مهندسی کامپیوتر', edu2School: 'دانشگاه آزاد اسلامی', edu2Status: 'در حال تحصیل',
   },
   de: {
@@ -105,11 +105,11 @@ export const copy = {
     projects: {
       bogzin: ['Commerce-Infrastruktur', 'Das Betriebssystem hinter einem B2B/B2C-Marktplatz. Meine Arbeit umfasst Verifizierung, Bestellungen, Zahlungen, Wallets, Rückerstattungen, Bestandsreservierung, Admin-Werkzeuge, Releases und Produktionsstabilität.', ['Bestell- und Zahlungsabläufe', 'Wallets, Rückerstattung & Reservierung', 'Admin- und Operations-Werkzeuge']],
       industrial: ['Industrielle Analyse & Entscheidungsunterstützung', 'Eine verteilte Plattform, die industrielle Daten über eine 5-stufige RAG-Pipeline, Erfassungspipelines, ETL-Jobs, Spring-Services, Angular-Dashboards, OpenSearch, Redis und AWS-Infrastruktur in durchsuchbare Analysen und entscheidungsreife Informationen verwandelt.', ['5-stufige RAG-Pipeline & Dokumentenverarbeitung', 'Suche, Analyse & Entscheidungsunterstützung', 'Produktionsreife AWS-Architektur']],
-      decentra: ['Blockchain-Produkt', 'Ein dezentrales Hospitality-Produkt: Leitung der Frontend-Auslieferung, Gestaltung der Nutzerabläufe, Teamkoordination und Mitarbeit an Java-Services und PostgreSQL.', ['Frontend-Teamleitung', 'Angular- und React-Oberflächen', 'Mitarbeit am Java-Backend']],
+      decentra: ['Blockchain-Produkt', 'Ein dezentrales Hospitality-Produkt mit Weboberflächen und einer React-Native-App: Leitung der Frontend-Auslieferung, Gestaltung der Nutzerabläufe, Teamkoordination und Mitarbeit an Java-Services und PostgreSQL.', ['Frontend-Teamleitung', 'Angular- und React-Weboberflächen', 'React-Native-App', 'Mitarbeit am Java-Backend']],
       marco: ['Blockchain-Produkt', 'Ein turismusorientiertes Ethereum ERC-20 ICO und dezentrales Reiseprodukt mit Benutzerreisen, wiederverwendbaren Komponenten und API-Integrationen.', ['ERC-20 Token-Implementierung', 'Benutzerreisen-Gestaltung', 'API-Integrationen & Plattformfunktionalität']],
     },
     epilogue: 'Was kommt als Nächstes?', next: 'Lassen Sie uns das nächste Kapitel bauen.', interest: 'Mich interessieren ambitionierte Produkte, durchdachte Engineering-Teams und Probleme, die technische Tiefe und klare Führung verlangen.',
-    projectMind: 'Ein Projekt oder eine Rolle im Kopf?', tell: 'Erzählen Sie mir, was Sie bauen.', email: 'Aref kontaktieren', builtIn: 'Mit Sorgfalt in Rascht gebaut', resume: 'Lebenslauf', viewProject: 'Projektquelle ansehen',
+    projectMind: 'Ein Projekt oder eine Rolle im Kopf?', tell: 'Erzählen Sie mir, was Sie bauen.', email: 'Aref kontaktieren', builtIn: 'Mit Sorgfalt in Rascht gebaut', resume: 'Lebenslauf', viewProject: 'Projekt ansehen',
     educationKicker: '04 · Bildung', educationTitle: 'Eine stärkere Grundlage aufbauen.', edu1Degree: 'Bachelor of Computer Engineering', edu1School: 'Universität Guilan', edu1Gpa: 'GPA: 15,71/20', edu2Degree: 'M.Sc. Informatik', edu2School: 'Islamische Azad-Universität', edu2Status: 'In Bearbeitung',
   },
 } as const

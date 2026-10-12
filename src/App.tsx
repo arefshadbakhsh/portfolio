@@ -2,6 +2,12 @@ import { useEffect, useState } from 'react'
 import { ArrowDown, ArrowUpRight, Download, Github, Linkedin, Mail, Menu, Moon, Sun, X } from 'lucide-react'
 import { copy, type Language } from './i18n'
 
+const presentation = {
+  en: { edition: 'ENGINEERING PORTFOLIO / 2026', headline: ['Aref', 'Shadbakhsh.'], signature: 'Code. Systems. People.', years: 'Years in software', team: 'Team members led', domains: 'Product domains', scope: 'A product, connected.', note: 'Actual product · public landing page', explore: 'Explore the work', fieldnotes: 'FIELD NOTES', identity: 'Full-stack · Technical lead', top: 'Back to top', menu: 'Toggle navigation', theme: 'Change color theme' },
+  fa: { edition: 'پورتفولیوی مهندسی / ۱۴۰۵', headline: ['عارف', 'شادبخش.'], signature: 'کد. سیستم. آدم‌ها.', years: 'سال در توسعه نرم‌افزار', team: 'نفر در تیم تحت هدایت', domains: 'حوزه محصول', scope: 'یک محصول، چند جریان متصل.', note: 'تصویر واقعی محصول · صفحه عمومی', explore: 'جزئیات پروژه', fieldnotes: 'یادداشت‌های مهندسی', identity: 'فول‌استک · رهبر فنی', top: 'بازگشت به ابتدا', menu: 'نمایش فهرست', theme: 'تغییر تم رنگی' },
+  de: { edition: 'ENGINEERING PORTFOLIO / 2026', headline: ['Aref', 'Shadbakhsh.'], signature: 'Code. Systeme. Menschen.', years: 'Jahre Softwareentwicklung', team: 'Geleitete Teammitglieder', domains: 'Produktbereiche', scope: 'Ein vernetztes Produkt.', note: 'Echtes Produkt · öffentliche Startseite', explore: 'Projekt erkunden', fieldnotes: 'TECHNISCHE NOTIZEN', identity: 'Full-Stack · Technical Lead', top: 'Nach oben', menu: 'Navigation öffnen', theme: 'Farbschema wechseln' },
+} as const
+
 const chapterIds = ['prologue', 'work', 'systems', 'journey', 'education', 'contact']
 
 const roles = [
@@ -64,8 +70,8 @@ const projects = [
   {
     index: '04', key: 'decentra', title: 'DecentraBNB', type: 'Blockchain product', symbol: 'chain',
     summary: 'A product experience for a decentralized hospitality concept, balancing unfamiliar technology with familiar, usable journeys.',
-    details: ['Frontend team leadership', 'Angular & React interfaces', 'Java backend contribution'],
-    tags: ['Angular', 'React', 'Spring Boot', 'PostgreSQL'],
+    details: ['Frontend team leadership', 'Angular & React web interfaces', 'React Native mobile app', 'Java backend contribution'],
+    tags: ['Angular', 'React', 'React Native', 'Spring Boot', 'PostgreSQL'],
     color: 'ink', status: 'Selected work', logo: '/decentrabnb-logo.png', link: 'https://coinmarketcap.com/currencies/decentrabnb/',
   },
   {
@@ -80,9 +86,10 @@ const projects = [
 function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [active, setActive] = useState('prologue')
-  const [lang, setLang] = useState<Language>(() => (localStorage.getItem('portfolio-language') as Language) || 'en')
-  const [theme, setTheme] = useState<'dark' | 'light'>(() => (localStorage.getItem('portfolio-theme') as 'dark' | 'light') || 'dark')
+  const [lang, setLang] = useState<Language>(() => (['en', 'fa', 'de'].includes(localStorage.getItem('portfolio-language') || '') ? localStorage.getItem('portfolio-language') as Language : 'en'))
+  const [theme, setTheme] = useState<'dark' | 'light'>(() => (localStorage.getItem('portfolio-theme') === 'dark' ? 'dark' : 'light'))
   const t = copy[lang]
+  const design = presentation[lang]
   const chapters = chapterIds.map((id, index) => ({ id, label: t.nav[index] }))
   const localizedProjects = projects.slice(1).map(project => {
     const key = project.key! as keyof typeof t.projects
@@ -111,18 +118,53 @@ function App() {
     localStorage.setItem('portfolio-theme', theme)
   }, [theme])
 
+  useEffect(() => {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const nodes = document.querySelectorAll<HTMLElement>('[data-reveal]')
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible')
+          observer.unobserve(entry.target)
+        }
+      })
+    }, { threshold: 0.08 })
+    if (!reduceMotion.matches) nodes.forEach(node => {
+      node.classList.add('reveal-ready')
+      observer.observe(node)
+    })
+    let frame = 0
+    const updateProgress = () => {
+      cancelAnimationFrame(frame)
+      frame = requestAnimationFrame(() => {
+        const distance = document.documentElement.scrollHeight - window.innerHeight
+        document.documentElement.style.setProperty('--scroll-progress', `${distance > 0 ? window.scrollY / distance : 0}`)
+      })
+    }
+    updateProgress()
+    window.addEventListener('scroll', updateProgress, { passive: true })
+    window.addEventListener('resize', updateProgress)
+    return () => {
+      observer.disconnect()
+      cancelAnimationFrame(frame)
+      window.removeEventListener('scroll', updateProgress)
+      window.removeEventListener('resize', updateProgress)
+    }
+  }, [])
+
   const toggleTheme = () => setTheme(theme === 'dark' ? 'light' : 'dark')
 
   const go = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+    document.getElementById(id)?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })
     setMenuOpen(false)
   }
 
   return (
     <div className="site-shell">
+      <a className="skip-link" href="#work">{t.workCta}</a>
       <header className="topbar">
-        <button className="wordmark" onClick={() => go('prologue')} aria-label="Back to top">
-          <img src="/aref-shadbakhsh.jpg" alt="" /><span className="wordmark-text"><strong>Aref Shadbakhsh</strong><small>Full-stack · Technical lead</small></span>
+        <button className="wordmark" onClick={() => go('prologue')} aria-label={design.top}>
+          <img className="identity-photo" src="/aref-shadbakhsh.jpg" alt="" /><span className="wordmark-text"><strong>Aref Shadbakhsh</strong><small>{design.identity}</small></span>
         </button>
         <nav className="desktop-nav" aria-label="Primary navigation">
           {chapters.map((item, i) => (
@@ -132,26 +174,26 @@ function App() {
           ))}
         </nav>
         <div className="header-end">
-          <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
+          <button className="theme-toggle" onClick={toggleTheme} aria-label={design.theme}>
             {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
           </button>
-          <div className="language-switch" aria-label="Language">{(['en', 'fa', 'de'] as Language[]).map(code => <button key={code} className={lang === code ? 'active' : ''} onClick={() => setLang(code)}>{code.toUpperCase()}</button>)}</div>
+          <div className="language-switch" aria-label="Language">{(['en', 'fa', 'de'] as Language[]).map(code => <button key={code} className={lang === code ? 'active' : ''} onClick={() => setLang(code)} aria-pressed={lang === code}>{code.toUpperCase()}</button>)}</div>
           <a className="availability" href="mailto:aref.shadbakhsh@gmail.com"><i /> {t.available}</a>
         </div>
-        <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
+        <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-label={design.menu} aria-expanded={menuOpen} aria-controls="mobile-navigation">
           {menuOpen ? <X /> : <Menu />}
         </button>
       </header>
 
-      {menuOpen && <div className="mobile-menu">{chapters.map(item => <button key={item.id} onClick={() => go(item.id)}>{item.label}</button>)}</div>}
+      {menuOpen && <nav className="mobile-menu" id="mobile-navigation">{chapters.map(item => <button key={item.id} onClick={() => go(item.id)}>{item.label}</button>)}</nav>}
 
       <main>
         <section className="hero" id="prologue">
-          <div className="eyebrow"><span>{t.location}</span><span>{t.since}</span></div>
+          <div className="eyebrow"><span>{design.edition}</span><span>{t.location}</span></div>
           <div className="hero-grid">
             <div className="hero-copy">
               <p className="issue-label">{t.role}</p>
-              <h1 dir="ltr">Aref<br /><em>Shadbakhsh.</em></h1>
+              <h1>{design.headline[0]}<br /><em>{design.headline[1]}</em></h1>
               <p className="hero-lede">{t.lede}</p>
               <div className="hero-actions">
                 <button onClick={() => go('work')}>{t.workCta} <ArrowDown size={17} /></button>
@@ -159,9 +201,14 @@ function App() {
               </div>
             </div>
             <figure className="portrait-wrap">
+              <span className="portrait-halo" aria-hidden="true" />
               <img src="/aref-shadbakhsh.jpg" alt="Aref Shadbakhsh" />
-              <figcaption><span>{t.current}</span> {t.currentText}</figcaption>
+              <figcaption><span className="portrait-online" aria-hidden="true" /><div><strong>{t.available}</strong><span>{design.signature}</span></div><ArrowUpRight size={22} /></figcaption>
             </figure>
+          </div>
+          <div className="hero-bottom">
+            <p className="current-note"><span>{t.current}</span>{t.currentText}</p>
+            <div className="evidence-strip"><div><strong>08<span>+</span></strong><span>{design.years}</span></div><div><strong>10<span>+</span></strong><span>{design.team}</span></div><div><strong>06</strong><span>{design.domains}</span></div></div>
           </div>
         </section>
 
@@ -170,7 +217,7 @@ function App() {
             <span className="kicker">{t.selected}</span>
             <h2>{t.products}</h2>
           </div>
-          <article className="featured-case">
+          <article className="featured-case" data-reveal>
             <div className="case-copy">
               <div className="case-label"><span>{t.featured}</span><span className="case-status"><i /> {t.testing}</span></div>
               <img className="nobat-logo" src="/nobat-link-logo.png" alt="Nobat Link" />
@@ -183,16 +230,17 @@ function App() {
               </dl>
               <a className="case-link" href="https://nobatlink.shop" target="_blank" rel="noreferrer">{t.visit} <ArrowUpRight size={18} /></a>
             </div>
-            <div className="booking-map" aria-label="Nobat Link product flow">
-              <div className="map-head"><span>{t.productScope}</span><span>nobatlink.shop</span></div>
-              <div className="scope-orbit"><span>{t.book}</span><span>{t.operate}</span><span>{t.notify}</span><strong>N</strong></div>
-              <p className="scope-caption">Next.js · FastAPI · PostgreSQL · Docker</p>
-            </div>
+            <a className="product-preview" href="https://nobatlink.shop" target="_blank" rel="noreferrer" aria-label={t.visit}>
+              <div className="preview-caption"><span>{t.productScope}</span><ArrowUpRight size={22} /></div>
+              <div className="browser-frame"><div className="browser-chrome"><span className="browser-dots"><i /><i /><i /></span><span dir="ltr">nobatlink.shop</span></div><img src="/nobatlink-preview.jpg" alt={design.note} loading="lazy" /></div>
+              <div className="preview-bottom"><span>{design.note}</span><strong>{t.visit} <ArrowUpRight size={17} /></strong></div>
+            </a>
           </article>
           <div className="supporting-heading"><span>{t.more}</span><p>{t.moreCopy}</p></div>
           <div className="case-list">
             {localizedProjects.map(project => (
-              <article className="case-row" key={project.index}>
+              <article className={`case-row case-${project.key}`} key={project.index} data-reveal>
+                <span className="case-number" aria-hidden="true">{project.index}</span>
                 {project.link ? (
                   <a className="case-brand" href={project.link} target="_blank" rel="noreferrer" aria-label={`${project.title} website`}>
                     {'logo' in project && project.logo ? <img src={project.logo} alt={`${project.title} logo`} /> : <strong>{project.title}</strong>}
@@ -205,8 +253,7 @@ function App() {
                 <div className="case-row-copy">
                   <div className="project-top"><span>{project.type}</span><span className="project-status">{project.status}</span></div>
                   <h3>{project.title}</h3><p>{project.summary}</p>
-                  <div className="case-row-tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div>
-                  <ul>{project.details.map(item => <li key={item}>{item}</li>)}</ul>
+                  <details className="project-details"><summary>{design.explore}<span>+</span></summary><ul>{project.details.map(item => <li key={item}>{item}</li>)}</ul><div className="case-row-tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div></details>
                   {project.link && <a className="case-visit" href={project.link} target="_blank" rel="noreferrer">{t.viewProject} <ArrowUpRight size={15} /></a>}
                 </div>
               </article>
@@ -215,7 +262,7 @@ function App() {
           <p className="confidential-note">{t.confidential}</p>
         </section>
 
-        <section className="systems section" id="systems">
+        <section className="systems section" id="systems" data-reveal>
           <div className="systems-intro">
             <span className="kicker">{t.approach}</span>
             <blockquote>“{t.quote}”</blockquote>
@@ -237,7 +284,7 @@ function App() {
           </div>
           <div className="timeline compact">
             {roles.map((role, index) => (
-              <article className="role" key={role.number}>
+              <article className="role" key={role.number} data-reveal>
                 <div className="role-meta"><time>{t.roleYears[index]}</time></div>
                 <div className="role-body"><p className="company">{role.company}</p><h3>{t.roleTitles[index]}</h3><p>{t.roles[index]}</p><div className="tags">{role.tags.map(tag => <span key={tag}>{tag}</span>)}</div></div>
               </article>
@@ -251,7 +298,7 @@ function App() {
             <h2 className="education-title">{t.educationTitle}</h2>
           </div>
           <div className="education-grid">
-            <article className="education-card">
+            <article className="education-card" data-reveal>
               <img src="/university_guilan_mark.png" alt="University of Guilan" className="edu-logo" />
               <div>
                 <h3>{t.edu1Degree}</h3>
@@ -259,7 +306,7 @@ function App() {
                 <span className="edu-gpa">{t.edu1Gpa}</span>
               </div>
             </article>
-            <article className="education-card">
+            <article className="education-card" data-reveal>
               <img src="/iau_mark.png" alt="Islamic Azad University" className="edu-logo" />
               <div>
                 <h3>{t.edu2Degree}</h3>
@@ -270,7 +317,7 @@ function App() {
           </div>
         </section>
 
-        <section className="contact section" id="contact">
+        <section className="contact section" id="contact" data-reveal>
           <span className="kicker">{t.epilogue}</span>
           <div className="contact-grid">
             <div><h2>{t.next}</h2><p>{t.interest}</p></div>
